@@ -1,6 +1,10 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { TextField, Button, Typography } from '@mui/material';
+
+import { useAppDispatch } from '@app/hooks';
+import { login } from '@features/auth';
 
 const AuthContainer = styled.div`
   display: flex;
@@ -40,13 +44,30 @@ const SubmitButton = styled(Button).attrs({ type: 'submit', fullWidth: true, var
   margin-bottom: 16px;
 `;
 
+const ErrorText = styled(Typography).attrs({ variant: 'body2', color: 'error' })`
+  margin-top: 8px;
+`;
+
 export const AuthPage = () => {
-  const [email, setEmail] = useState('');
+  const [loginValue, setLoginValue] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState<string | null>(null);
+
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+
+  const isFormValid = loginValue.trim() !== '' && password.trim() !== '';
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.warn('Login attempt:', { email, password });
+
+    if (!isFormValid) {
+      setError('Please fill in all fields');
+      return;
+    }
+
+    dispatch(login(loginValue.trim()));
+    navigate('/groups', { replace: true });
   };
 
   return (
@@ -59,13 +80,17 @@ export const AuthPage = () => {
             margin="normal"
             required
             fullWidth
-            id="email"
-            label="Email Address"
-            name="email"
-            autoComplete="email"
+            id="login"
+            label="Login"
+            name="login"
+            autoComplete="username"
             autoFocus
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            value={loginValue}
+            onChange={(e) => {
+              setLoginValue(e.target.value);
+              setError(null);
+            }}
+            error={!!error && loginValue.trim() === ''}
           />
           <TextField
             margin="normal"
@@ -77,9 +102,14 @@ export const AuthPage = () => {
             id="password"
             autoComplete="current-password"
             value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            onChange={(e) => {
+              setPassword(e.target.value);
+              setError(null);
+            }}
+            error={!!error && password.trim() === ''}
           />
-          <SubmitButton>Sign In</SubmitButton>
+          {error && <ErrorText>{error}</ErrorText>}
+          <SubmitButton disabled={!isFormValid}>Sign In</SubmitButton>
         </Form>
       </AuthCard>
     </AuthContainer>

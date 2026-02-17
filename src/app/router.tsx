@@ -4,6 +4,7 @@ import { AuthPage } from "@pages/AuthPage";
 import { GroupsPage } from "@pages/GroupsPage";
 import { MapPage } from "@pages/MapPage";
 import { Layout } from "@app/layouts/Layout";
+import { AuthGuard, GuestGuard } from "@app/providers";
 
 export const router = createBrowserRouter([
   {
@@ -12,22 +13,31 @@ export const router = createBrowserRouter([
   },
   {
     path: "/auth",
-    element: <AuthPage />,
+    element: (
+      <GuestGuard>
+        <AuthPage />
+      </GuestGuard>
+    ),
   },
   {
-    element: (
-      <Layout>
-        <Outlet />
-      </Layout>
-    ),
+    element: <AuthGuard />,
     children: [
       {
-        path: "/groups",
-        element: <GroupsPage />,
-      },
-      {
-        path: "/groups/:id",
-        element: <MapPage />,
+        element: (
+          <Layout>
+            <Outlet />
+          </Layout>
+        ),
+        children: [
+          {
+            path: "/groups",
+            element: <GroupsPage />,
+          },
+          {
+            path: "/groups/:id",
+            element: <MapPage />,
+          },
+        ],
       },
     ],
   },
