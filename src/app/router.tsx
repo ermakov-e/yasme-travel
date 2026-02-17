@@ -1,17 +1,17 @@
-import { createBrowserRouter, Navigate, Outlet } from 'react-router-dom';
+import { createBrowserRouter, Navigate, Outlet } from "react-router-dom";
 
-import { AuthPage } from '@pages/AuthPage';
-import { GroupsPage } from '@pages/GroupsPage';
-import { MapPage } from '@pages/MapPage';
-import { Layout } from '@shared/ui';
+import { AuthPage } from "@pages/AuthPage";
+import { GroupsPage } from "@pages/GroupsPage";
+import { MapPage } from "@pages/MapPage";
+import { Layout } from "@app/layouts/Layout";
 
 export const router = createBrowserRouter([
   {
-    path: '/',
+    path: "/",
     element: <Navigate to="/auth" replace />,
   },
   {
-    path: '/auth',
+    path: "/auth",
     element: <AuthPage />,
   },
   {
@@ -22,11 +22,11 @@ export const router = createBrowserRouter([
     ),
     children: [
       {
-        path: '/groups',
+        path: "/groups",
         element: <GroupsPage />,
       },
       {
-        path: '/groups/:id',
+        path: "/groups/:id",
         element: <MapPage />,
       },
     ],

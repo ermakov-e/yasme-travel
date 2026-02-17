@@ -1,6 +1,6 @@
-import styled from 'styled-components';
-import { Typography, Button } from '@mui/material';
-import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline';
+import styled from "styled-components";
+import { Typography, Button } from "@mui/material";
+import ErrorOutlineIcon from "@mui/icons-material/ErrorOutline";
 
 interface ErrorProps {
   readonly message?: string;
@@ -8,25 +8,10 @@ interface ErrorProps {
   readonly fullHeight?: boolean;
 }
 
-const ErrorContainer = styled.div<{ $fullHeight: boolean }>`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 16px;
-  padding: 32px 0;
-  ${({ $fullHeight }) => $fullHeight && 'min-height: 100vh;'}
-`;
-
-const ErrorIcon = styled(ErrorOutlineIcon)`
-  font-size: 64px;
-  color: ${({ theme }) => theme.colors.error};
-`;
-
-export const Error = ({ 
-  message = 'Something went wrong', 
+export const Error = ({
+  message = "Something went wrong",
   onRetry,
-  fullHeight = false 
+  fullHeight = false,
 }: ErrorProps) => {
   return (
     <ErrorContainer $fullHeight={fullHeight}>
@@ -42,3 +27,18 @@ export const Error = ({
     </ErrorContainer>
   );
 };
+
+const ErrorContainer = styled.div<{ $fullHeight: boolean }>`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: 32px 0;
+  ${({ $fullHeight }) => $fullHeight && "min-height: 100vh;"}
+`;
+
+const ErrorIcon = styled(ErrorOutlineIcon)`
+  font-size: 64px;
+  color: ${({ theme }) => theme.colors.error};
+`;

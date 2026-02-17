@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import styled from 'styled-components';
+import { useState } from "react";
+import styled from "styled-components";
 import {
   AppBar,
   Toolbar,
@@ -12,46 +12,24 @@ import {
   ListItemIcon,
   ListItemText,
   useMediaQuery,
-} from '@mui/material';
-import MenuIcon from '@mui/icons-material/Menu';
-import MapIcon from '@mui/icons-material/Map';
-import GroupsIcon from '@mui/icons-material/Groups';
-import { useNavigate, useLocation } from 'react-router-dom';
+} from "@mui/material";
+import MenuIcon from "@mui/icons-material/Menu";
+import MapIcon from "@mui/icons-material/Map";
+import GroupsIcon from "@mui/icons-material/Groups";
+import { useNavigate, useLocation } from "react-router-dom";
 
 interface LayoutProps {
   readonly children: React.ReactNode;
 }
 
-const LayoutContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-`;
-
-const MainContent = styled.main`
-  flex: 1;
-`;
-
-const StyledAppBar = styled(AppBar)`
-  position: static;
-`;
-
-const AppTitle = styled(Typography).attrs({ variant: 'h6' })`
-  cursor: pointer;
-`;
-
-const DrawerContent = styled.div`
-  width: 250px;
-`;
-
 const navItems = [
-  { text: 'Groups', icon: <GroupsIcon />, path: '/groups' },
-  { text: 'Map', icon: <MapIcon />, path: '/groups' },
+  { text: "Groups", icon: <GroupsIcon />, path: "/groups" },
+  { text: "Map", icon: <MapIcon />, path: "/groups" },
 ];
 
 export const Layout = ({ children }: LayoutProps) => {
   const [drawerOpen, setDrawerOpen] = useState(false);
-  const isMobile = useMediaQuery('(max-width:960px)');
+  const isMobile = useMediaQuery("(max-width:960px)");
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -97,19 +75,35 @@ export const Layout = ({ children }: LayoutProps) => {
               <MenuIcon />
             </IconButton>
           )}
-          <AppTitle onClick={() => navigate('/groups')}>
-            Yasme Travel
-          </AppTitle>
+          <AppTitle onClick={() => navigate("/groups")}>Yasme Travel</AppTitle>
         </Toolbar>
       </StyledAppBar>
-      <Drawer
-        anchor="left"
-        open={drawerOpen}
-        onClose={handleDrawerToggle}
-      >
+      <Drawer anchor="left" open={drawerOpen} onClose={handleDrawerToggle}>
         {drawer}
       </Drawer>
       <MainContent>{children}</MainContent>
     </LayoutContainer>
   );
 };
+
+const LayoutContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+`;
+
+const MainContent = styled.main`
+  flex: 1;
+`;
+
+const StyledAppBar = styled(AppBar)`
+  position: static;
+`;
+
+const AppTitle = styled(Typography).attrs({ variant: "h6" })`
+  cursor: pointer;
+`;
+
+const DrawerContent = styled.div`
+  width: 250px;
+`;
