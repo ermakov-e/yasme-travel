@@ -38,8 +38,19 @@ const authSlice = createSlice({
       state.isAuthenticated = false;
       state.error = null;
     },
+    login: (state, action: PayloadAction<string>) => {
+      const login = action.payload;
+      state.user = {
+        id: crypto.randomUUID(),
+        email: `${login}@mock.local`,
+        name: login,
+        createdAt: new Date().toISOString(),
+      };
+      state.isAuthenticated = true;
+      state.error = null;
+    },
   },
 });
 
-export const { setUser, setLoading, setError, logout } = authSlice.actions;
+export const { setUser, setLoading, setError, logout, login } = authSlice.actions;
 export default authSlice.reducer;
