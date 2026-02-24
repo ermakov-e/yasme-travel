@@ -1,3 +1,9 @@
+export interface GroupLocation {
+  lat: number;
+  lng: number;
+  address?: string;
+}
+
 export interface GroupMember {
   id: string;
   avatar: string;
@@ -6,9 +12,7 @@ export interface GroupMember {
 export interface Group {
   id: string;
   name: string;
-  description: string;
   coverImage: string;
-  createdAt: string;
-  createdBy: string;
+  location: GroupLocation;
   members: GroupMember[];
 }
