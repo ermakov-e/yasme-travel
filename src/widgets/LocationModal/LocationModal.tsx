@@ -1,9 +1,9 @@
-import styled from 'styled-components';
-import { Dialog, DialogContent, Typography, IconButton } from '@mui/material';
-import CloseIcon from '@mui/icons-material/Close';
+import styled from "styled-components";
+import { Dialog, DialogContent, Typography, IconButton } from "@mui/material";
+import CloseIcon from "@mui/icons-material/Close";
 
-import { useAppDispatch, useAppSelector } from '@app/hooks';
-import { closeLocationModal } from '@features/ui';
+import { useAppDispatch, useAppSelector } from "@app/hooks";
+import { closeModal } from "@features/ui";
 
 const StyledDialogContent = styled(DialogContent)`
   padding: 24px;
@@ -25,14 +25,14 @@ const PlaceholderContent = styled.div`
 
 export const LocationModal = () => {
   const dispatch = useAppDispatch();
-  const isOpen = useAppSelector((state) => state.ui.isLocationModalOpen);
+  const isOpen = useAppSelector((state) => state.modal.activeModal);
 
   const handleClose = () => {
-    dispatch(closeLocationModal());
+    dispatch(closeModal());
   };
 
   return (
-    <Dialog fullScreen open={isOpen} onClose={handleClose}>
+    <Dialog fullScreen open={!!isOpen} onClose={handleClose}>
       <StyledDialogContent>
         <ModalHeader>
           <Typography variant="h5">Location Details</Typography>

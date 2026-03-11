@@ -1,8 +1,5 @@
-export {
-  openLocationModal,
-  closeLocationModal,
-  openCreateGroupModal,
-  closeCreateGroupModal,
-} from './uiSlice';
-export type { UiState } from './uiSlice';
-export { default as uiReducer } from './uiSlice';
+import modalReducer from "./modalSlice";
+export { openModal, closeModal } from "./modalSlice";
+export { modalReducer };
+export type { ModalName } from "./modalSlice";
+export { ModalProvider } from "./ModalProvider";

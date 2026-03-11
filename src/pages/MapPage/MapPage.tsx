@@ -1,11 +1,11 @@
-import styled from 'styled-components';
-import { Typography, Button } from '@mui/material';
-import { useParams } from 'react-router-dom';
+import styled from "styled-components";
+import { Typography, Button } from "@mui/material";
+import { useParams } from "react-router-dom";
 
-import { Map } from '@widgets/Map';
-import { LocationModal } from '@widgets/LocationModal';
-import { useAppDispatch } from '@app/hooks';
-import { openLocationModal } from '@features/ui';
+import { Map } from "@widgets/Map";
+import { LocationModal } from "@widgets/LocationModal";
+import { useAppDispatch } from "@app/hooks";
+import { openModal } from "@features/ui";
 
 const PageContainer = styled.div`
   padding: 24px;
@@ -37,7 +37,7 @@ export const MapPage = () => {
   const dispatch = useAppDispatch();
 
   const handleAddLocation = () => {
-    dispatch(openLocationModal(null));
+    dispatch(openModal({ name: "create-group" }));
   };
 
   return (
