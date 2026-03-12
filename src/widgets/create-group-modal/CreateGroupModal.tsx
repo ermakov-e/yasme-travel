@@ -27,7 +27,9 @@ export const CreateGroupModal = () => {
   const [step, setStep] = useState(1);
   const [selectedFriends, setSelectedFriends] = useState<string[]>([]);
 
-  const { data: friends = [] } = useGetFriendsQuery(undefined, { skip: !isOpen });
+  const { data: friends = [] } = useGetFriendsQuery(undefined, {
+    skip: !isOpen,
+  });
   const [createGroup] = useCreateGroupMutation();
 
   const {

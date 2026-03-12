@@ -24,4 +24,5 @@ export const createGroupSchema = yup.object({
       'Обязательно',
       (value) => value !== null && value !== undefined && value.address !== undefined,
     ),
+  members: yup.array().default([]),
 });

@@ -37,18 +37,20 @@ const mockGroups: Group[] = [
   },
 ];
 
+const BASE_URL = import.meta.env.VITE_API_BASE_URL || '/api';
+
 export const groupsHandlers = [
-  http.get('/api/groups', async () => {
+  http.get(`${BASE_URL}/groups`, async () => {
     await delay(500);
     return HttpResponse.json(mockGroups);
   }),
 
-  http.get('/api/friends', async () => {
+  http.get(`${BASE_URL}/friends`, async () => {
     await delay(300);
     return HttpResponse.json(MOCK_FRIENDS);
   }),
 
-  http.post('/api/groups', async ({ request }) => {
+  http.post(`${BASE_URL}/groups`, async ({ request }) => {
     await delay(800);
     const body = (await request.json()) as CreateGroupPayload;
 

@@ -1,6 +1,5 @@
 import { api } from '@shared/api/apiSlice';
-import type { Group, GroupMember } from '@entities';
-import type { GroupLocation } from '@entities';
+import type { Group, GroupLocation, GroupMember } from '@entities';
 
 export interface CreateGroupPayload {
   name: string;

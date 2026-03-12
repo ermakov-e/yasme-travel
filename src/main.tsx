@@ -10,11 +10,11 @@ import { router } from "@app/router";
 import { muiTheme, styledTheme, GlobalStyles } from "@app/styles";
 import "./index.css";
 
-async function enableMocking() {
+const enableMocking = async () => {
   if (!import.meta.env.DEV) return;
   const { worker } = await import("@shared/mocks");
   return worker.start({ onUnhandledRequest: "bypass" });
-}
+};
 
 enableMocking().then(() => {
   createRoot(document.getElementById("root")!).render(
