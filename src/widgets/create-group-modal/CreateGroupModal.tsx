@@ -2,9 +2,9 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 
-import type { GroupMember } from "@entities/group";
 import { useAppDispatch, useAppSelector } from "@app/hooks";
 import { closeModal } from "@features/ui/modalSlice";
+import { useGetFriendsQuery, useCreateGroupMutation } from "@features/groups";
 import { Modal } from "@shared/ui/modal";
 
 import { ModalHeader } from "./ui/ModalHeader";
@@ -19,16 +19,6 @@ const TOTAL_STEPS = 3;
 
 const STEP_TITLES = ["Новая группа", "Место встречи", "Участники"];
 
-const MOCK_FRIENDS: GroupMember[] = [
-  { id: "1", avatar: "https://i.pravatar.cc/40?img=1" },
-  { id: "2", avatar: "https://i.pravatar.cc/40?img=2" },
-  { id: "3", avatar: "https://i.pravatar.cc/40?img=3" },
-  { id: "4", avatar: "https://i.pravatar.cc/40?img=4" },
-  { id: "5", avatar: "https://i.pravatar.cc/40?img=5" },
-  { id: "6", avatar: "https://i.pravatar.cc/40?img=6" },
-  { id: "7", avatar: "https://i.pravatar.cc/40?img=7" },
-];
-
 export const CreateGroupModal = () => {
   const dispatch = useAppDispatch();
   const { activeModal } = useAppSelector((state) => state.modal);
@@ -36,6 +26,9 @@ export const CreateGroupModal = () => {
 
   const [step, setStep] = useState(1);
   const [selectedFriends, setSelectedFriends] = useState<string[]>([]);
+
+  const { data: friends = [] } = useGetFriendsQuery(undefined, { skip: !isOpen });
+  const [createGroup] = useCreateGroupMutation();
 
   const {
     control,
@@ -68,9 +61,12 @@ export const CreateGroupModal = () => {
     if (valid) setStep((s) => s + 1);
   };
 
-  const onSubmit = (data: CreateGroupFormData) => {
-    const members = MOCK_FRIENDS.filter((f) => selectedFriends.includes(f.id));
-    console.warn("Create group:", { ...data, members });
+  const onSubmit = async (data: CreateGroupFormData) => {
+    await createGroup({
+      name: data.name,
+      location: data.location,
+      memberIds: selectedFriends,
+    }).unwrap();
     handleClose();
   };
 
@@ -100,7 +96,7 @@ export const CreateGroupModal = () => {
         {step === 2 && <StepLocation control={control} errors={errors} />}
         {step === 3 && (
           <StepMembers
-            friends={MOCK_FRIENDS}
+            friends={friends}
             selectedIds={selectedFriends}
             onToggle={(id) =>
               setSelectedFriends((prev) =>

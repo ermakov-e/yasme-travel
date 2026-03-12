@@ -1,2 +1,2 @@
-// Groups feature - placeholder for future implementation
-export {};
+export { useGetGroupsQuery, useGetFriendsQuery, useCreateGroupMutation } from './apiSlice';
+export type { CreateGroupPayload } from './apiSlice';
