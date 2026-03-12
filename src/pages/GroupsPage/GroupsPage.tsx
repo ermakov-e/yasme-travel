@@ -1,100 +1,104 @@
-import styled from 'styled-components';
-import { Typography, Button, List, ListItem, ListItemButton, ListItemText } from '@mui/material';
-import { useNavigate } from 'react-router-dom';
+import styled from "styled-components";
+import { Typography, useMediaQuery } from "@mui/material";
+import AddIcon from "@mui/icons-material/Add";
+import { useNavigate } from "react-router-dom";
 
-import type { Group } from '@entities';
+import { GroupsList } from "@widgets/groups-list";
+import { useAppDispatch } from "@app/hooks";
+import { openModal } from "@features/ui/modalSlice";
+import { useGetGroupsQuery } from "@features/groups";
 
 const PageContainer = styled.div`
-  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  padding: ${({ theme }) => theme.spacing(2)};
 `;
 
 const Header = styled.div`
+  margin-bottom: ${({ theme }) => theme.spacing(3)};
+`;
+
+const PageTitle = styled(Typography).attrs({ variant: "h4" })`
+  font-weight: 600;
+  color: ${({ theme }) => theme.colors.text.primary};
+`;
+
+const FabContainer = styled.div<{ $isMobile: boolean }>`
+  position: fixed;
+  bottom: ${({ $isMobile, theme }) =>
+    $isMobile ? `calc(56px + ${theme.spacing(2)})` : theme.spacing(3)};
+  right: ${({ theme }) => theme.spacing(2)};
+  z-index: ${({ theme }) => theme.zIndex.sticky};
+`;
+
+const StyledFab = styled.button`
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  margin-bottom: 24px;
-`;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border: none;
+  border-radius: ${({ theme }) => theme.borderRadius.full};
+  background-color: ${({ theme }) => theme.colors.primary};
+  color: ${({ theme }) => theme.colors.text.inverse};
+  box-shadow: ${({ theme }) => theme.shadows.md};
+  cursor: pointer;
+  transition: all ${({ theme }) => theme.transitions.normal};
 
-const PageTitle = styled(Typography).attrs({ variant: 'h4' })``;
-
-const GroupsCard = styled.div`
-  background-color: ${({ theme }) => theme.colors.background.paper};
-  border-radius: ${({ theme }) => theme.borderRadius.md};
-  box-shadow: ${({ theme }) => theme.shadows.sm};
-  overflow: hidden;
-`;
-
-const StyledList = styled(List)`
-  padding: 0;
-`;
-
-const StyledListItemButton = styled(ListItemButton)`
   &:hover {
-    background-color: ${({ theme }) => theme.colors.grey[100]};
+    background-color: ${({ theme }) => theme.colors.primaryDark};
+    transform: scale(1.05);
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
+
+  &:focus-visible {
+    outline: 2px solid ${({ theme }) => theme.colors.primary};
+    outline-offset: 2px;
+  }
+
+  & svg {
+    font-size: 24px;
   }
 `;
 
-// Mock data
-const mockGroups: Group[] = [
-  {
-    id: '1',
-    name: 'Summer Trip 2024',
-    description: 'Our summer vacation to the mountains',
-    createdAt: '2024-06-01',
-    createdBy: 'user1',
-    membersCount: 5,
-  },
-  {
-    id: '2',
-    name: 'Weekend Getaways',
-    description: 'Short trips around the city',
-    createdAt: '2024-05-15',
-    createdBy: 'user2',
-    membersCount: 3,
-  },
-  {
-    id: '3',
-    name: 'Europe Adventure',
-    description: 'Backpacking through Europe',
-    createdAt: '2024-04-20',
-    createdBy: 'user1',
-    membersCount: 8,
-  },
-];
-
 export const GroupsPage = () => {
   const navigate = useNavigate();
+  const isMobile = useMediaQuery("(max-width:960px)");
+  const dispatch = useAppDispatch();
+
+  const { data: groups = [], isLoading, isError } = useGetGroupsQuery();
 
   const handleGroupClick = (groupId: string) => {
     navigate(`/groups/${groupId}`);
   };
 
   const handleCreateGroup = () => {
-    console.warn('Create group clicked');
+    dispatch(openModal({ name: "create-group" }));
   };
 
   return (
     <PageContainer>
       <Header>
         <PageTitle>My Groups</PageTitle>
-        <Button variant="contained" onClick={handleCreateGroup}>
-          Create Group
-        </Button>
       </Header>
-      <GroupsCard>
-        <StyledList disablePadding>
-          {mockGroups.map((group) => (
-            <ListItem key={group.id} disablePadding>
-              <StyledListItemButton onClick={() => handleGroupClick(group.id)}>
-                <ListItemText
-                  primary={group.name}
-                  secondary={`${group.description} · ${group.membersCount} members`}
-                />
-              </StyledListItemButton>
-            </ListItem>
-          ))}
-        </StyledList>
-      </GroupsCard>
+      {isError && (
+        <Typography color="error">Не удалось загрузить группы</Typography>
+      )}
+      {!isError && (
+        <GroupsList
+          groups={isLoading ? [] : groups}
+          onGroupClick={handleGroupClick}
+        />
+      )}
+      <FabContainer $isMobile={isMobile}>
+        <StyledFab aria-label="create group" onClick={handleCreateGroup}>
+          <AddIcon />
+        </StyledFab>
+      </FabContainer>
     </PageContainer>
   );
 };

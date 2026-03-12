@@ -253,6 +253,10 @@ export const styledTheme = {
     full: '9999px',
   },
   
+  typography: {
+    fontFamily: '"Inter", "Roboto", "Helvetica", "Arial", sans-serif',
+  },
+  
   transitions: {
     fast: '150ms ease',
     normal: '250ms ease',

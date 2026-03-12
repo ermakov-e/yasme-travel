@@ -1,9 +1,6 @@
 export interface Photo {
   id: string;
-  locationId: string;
+  groupId: string;
   url: string;
-  thumbnailUrl: string;
-  description: string;
   createdAt: string;
-  uploadedBy: string;
 }

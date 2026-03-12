@@ -1,109 +1,43 @@
-import { useState } from "react";
 import styled from "styled-components";
-import {
-  AppBar,
-  Toolbar,
-  Typography,
-  IconButton,
-  Drawer,
-  List,
-  ListItem,
-  ListItemButton,
-  ListItemIcon,
-  ListItemText,
-  useMediaQuery,
-} from "@mui/material";
-import MenuIcon from "@mui/icons-material/Menu";
-import MapIcon from "@mui/icons-material/Map";
-import GroupsIcon from "@mui/icons-material/Groups";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useMediaQuery } from "@mui/material";
+import { useLocation } from "react-router-dom";
+
+import { ModalProvider } from "@features/ui";
+
+import { BottomNavigation } from "../BottomNavigation";
 
 interface LayoutProps {
   readonly children: React.ReactNode;
 }
 
-const navItems = [
-  { text: "Groups", icon: <GroupsIcon />, path: "/groups" },
-  { text: "Map", icon: <MapIcon />, path: "/groups" },
-];
+const allowedPaths = ["/groups", "/friends", "/settings"];
 
-export const Layout = ({ children }: LayoutProps) => {
-  const [drawerOpen, setDrawerOpen] = useState(false);
-  const isMobile = useMediaQuery("(max-width:960px)");
-  const navigate = useNavigate();
-  const location = useLocation();
-
-  const handleDrawerToggle = () => {
-    setDrawerOpen(!drawerOpen);
-  };
-
-  const handleNavigation = (path: string) => {
-    navigate(path);
-    setDrawerOpen(false);
-  };
-
-  const drawer = (
-    <DrawerContent>
-      <List>
-        {navItems.map((item) => (
-          <ListItem key={item.text} disablePadding>
-            <ListItemButton
-              selected={location.pathname.startsWith(item.path)}
-              onClick={() => handleNavigation(item.path)}
-            >
-              <ListItemIcon>{item.icon}</ListItemIcon>
-              <ListItemText primary={item.text} />
-            </ListItemButton>
-          </ListItem>
-        ))}
-      </List>
-    </DrawerContent>
-  );
-
-  return (
-    <LayoutContainer>
-      <StyledAppBar>
-        <Toolbar>
-          {isMobile && (
-            <IconButton
-              edge="start"
-              color="inherit"
-              aria-label="menu"
-              onClick={handleDrawerToggle}
-              sx={{ mr: 2 }}
-            >
-              <MenuIcon />
-            </IconButton>
-          )}
-          <AppTitle onClick={() => navigate("/groups")}>Yasme Travel</AppTitle>
-        </Toolbar>
-      </StyledAppBar>
-      <Drawer anchor="left" open={drawerOpen} onClose={handleDrawerToggle}>
-        {drawer}
-      </Drawer>
-      <MainContent>{children}</MainContent>
-    </LayoutContainer>
-  );
-};
-
-const LayoutContainer = styled.div`
+const LayoutContainer = styled.div<{ $hasBottomNav: boolean }>`
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  background-color: ${({ theme }) => theme.colors.background.default};
+  padding-bottom: ${({ $hasBottomNav }) => ($hasBottomNav ? "56px" : "0")};
 `;
 
 const MainContent = styled.main`
   flex: 1;
+  overflow-y: auto;
 `;
 
-const StyledAppBar = styled(AppBar)`
-  position: static;
-`;
+export const Layout = ({ children }: LayoutProps) => {
+  const location = useLocation();
+  const isMobile = useMediaQuery("(max-width:960px)");
 
-const AppTitle = styled(Typography).attrs({ variant: "h6" })`
-  cursor: pointer;
-`;
+  const hasBottomNav =
+    isMobile && allowedPaths.some((path) => location.pathname.startsWith(path));
 
-const DrawerContent = styled.div`
-  width: 250px;
-`;
+  return (
+    <LayoutContainer $hasBottomNav={hasBottomNav}>
+      <ModalProvider>
+        <MainContent>{children}</MainContent>
+      </ModalProvider>
+      <BottomNavigation />
+    </LayoutContainer>
+  );
+};
