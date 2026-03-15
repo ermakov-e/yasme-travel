@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Autocomplete, TextField, CircularProgress } from '@mui/material';
 
 import { useDebounce } from '@shared/hooks/useDebounce';
@@ -17,6 +17,10 @@ export const AutocompleteAddress = ({
   const [inputValue, setInputValue] = useState('');
   const [open, setOpen] = useState(false);
   const debounceValue = useDebounce(inputValue, 500);
+
+  useEffect(() => {
+    setInputValue(value?.label ?? '');
+  }, [value]);
 
   const {
     data,

@@ -18,6 +18,7 @@ interface ModalActionsProps {
   isSubmitting: boolean;
   onNext: () => void;
   onClose: () => void;
+  onSubmit: () => void;
 }
 
 export const ModalActions = ({
@@ -25,6 +26,7 @@ export const ModalActions = ({
   isSubmitting,
   onNext,
   onClose,
+  onSubmit,
 }: ModalActionsProps) => (
   <ActionsRow>
     <Button
@@ -38,12 +40,12 @@ export const ModalActions = ({
     </Button>
     {isLastStep ? (
       <Button
-        type="submit"
-        form="create-group-form"
+        type="button"
         variant="primary"
         size="small"
         fullWidth
         disabled={isSubmitting}
+        onClick={onSubmit}
       >
         Создать группу
       </Button>

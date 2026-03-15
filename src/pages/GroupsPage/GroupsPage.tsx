@@ -7,6 +7,7 @@ import { GroupsList } from "@widgets/groups-list";
 import { useAppDispatch } from "@app/hooks";
 import { openModal } from "@features/ui/modalSlice";
 import { useGetGroupsQuery } from "@features/groups";
+import { Loading } from "@shared/ui";
 
 const PageContainer = styled.div`
   display: flex;
@@ -85,14 +86,12 @@ export const GroupsPage = () => {
       <Header>
         <PageTitle>My Groups</PageTitle>
       </Header>
+      {isLoading && <Loading message="Загрузка групп..." />}
       {isError && (
         <Typography color="error">Не удалось загрузить группы</Typography>
       )}
-      {!isError && (
-        <GroupsList
-          groups={isLoading ? [] : groups}
-          onGroupClick={handleGroupClick}
-        />
+      {!isLoading && !isError && (
+        <GroupsList groups={groups} onGroupClick={handleGroupClick} />
       )}
       <FabContainer $isMobile={isMobile}>
         <StyledFab aria-label="create group" onClick={handleCreateGroup}>
