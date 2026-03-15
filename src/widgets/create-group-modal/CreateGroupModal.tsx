@@ -27,7 +27,7 @@ export const CreateGroupModal = () => {
   const [step, setStep] = useState(1);
   const [selectedFriends, setSelectedFriends] = useState<string[]>([]);
 
-  const { data: friends = [] } = useGetFriendsQuery(undefined, {
+  const { data: friends = [], isLoading: isFriendsLoading } = useGetFriendsQuery(undefined, {
     skip: !isOpen,
   });
   const [createGroup] = useCreateGroupMutation();
@@ -90,16 +90,18 @@ export const CreateGroupModal = () => {
           isSubmitting={isSubmitting}
           onNext={handleNext}
           onClose={handleClose}
+          onSubmit={handleSubmit(onSubmit)}
         />
       }
     >
-      <form id="create-group-form" onSubmit={handleSubmit(onSubmit)}>
+      <form>
         {step === 1 && <StepBasicInfo control={control} errors={errors} />}
         {step === 2 && <StepLocation control={control} errors={errors} />}
         {step === 3 && (
           <StepMembers
             friends={friends}
             selectedIds={selectedFriends}
+            isLoading={isFriendsLoading}
             onToggle={(id) =>
               setSelectedFriends((prev) =>
                 prev.includes(id)

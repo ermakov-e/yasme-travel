@@ -192,7 +192,7 @@ export const LocationPicker = ({ value, onChange }: LocationPickerProps) => {
     : DEFAULT_CENTER;
 
   return (
-    <Wrapper>
+    <Wrapper data-vaul-no-drag>
       <MapInner>
         <MapContainer
           center={center}

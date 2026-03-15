@@ -2,6 +2,7 @@ import { Avatar, Typography } from "@mui/material";
 import styled from "styled-components";
 
 import type { GroupMember } from "@entities/group";
+import { Loading } from "@shared/ui";
 
 const StepContent = styled.div`
   display: flex;
@@ -73,10 +74,12 @@ interface StepMembersProps {
   friends: GroupMember[];
   selectedIds: string[];
   onToggle: (id: string) => void;
+  isLoading?: boolean;
 }
 
-export const StepMembers = ({ friends, selectedIds, onToggle }: StepMembersProps) => (
+export const StepMembers = ({ friends, selectedIds, onToggle, isLoading }: StepMembersProps) => (
   <StepContent>
+    {isLoading && <Loading message="Загрузка друзей..." />}
     <LabelRow>
       <FieldLabel>Друзья</FieldLabel>
       {selectedIds.length > 0 && (
