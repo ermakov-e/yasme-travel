@@ -24,9 +24,9 @@ docs/specs/
 ## Создание
 
 ```bash
-pnpm spec:new groups "Создание группы"
+yarn spec:new groups "Создание группы"
 # или с явным slug и слоем:
-pnpm spec:new groups "Создание группы" --slug create-group --layer widgets
+yarn spec:new groups "Создание группы" --slug create-group --layer widgets
 ```
 
 Скрипт создаёт файл по шаблону с корректным ID и датой.
@@ -89,7 +89,7 @@ updated: 2026-11-22
 
 ## Проверка
 
-`pnpm docs:check` валидирует:
+`yarn docs:check` валидирует:
 
 - уникальность `id`;
 - допустимые `status` и `layer`;

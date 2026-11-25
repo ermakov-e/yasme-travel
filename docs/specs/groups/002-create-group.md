@@ -79,9 +79,9 @@ interface CreateGroupPayload {
 ## Проверка
 
 - `npx tsc --noEmit`
-- `pnpm lint`
+- `yarn lint`
 - Сценарии 1–6 вручную.
-- `pnpm docs:check`.
+- `yarn docs:check`.
 
 ## Открытые вопросы
 

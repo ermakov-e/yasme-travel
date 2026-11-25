@@ -109,8 +109,8 @@ TODO: типы, эндпоинты, форматы запросов и отве�
 ## Проверка
 
 - \`npx tsc --noEmit\`
-- \`pnpm lint\`
-- \`pnpm docs:check\`
+- \`yarn lint\`
+- \`yarn docs:check\`
 
 ## Открытые вопросы
 

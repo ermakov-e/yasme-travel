@@ -116,9 +116,9 @@ UI (pages / widgets)
 ## Как добавить фичу
 
 1. Прочитать [workflow агента](agent/workflow.md) и [карту контекста](agent/context-map.md).
-2. Создать спеку: `pnpm spec:new <area> "Название"`.
+2. Создать спеку: `yarn spec:new <area> "Название"`.
 3. Определить слой и список файлов (существующие — в `files`, плановые — в `planned`).
 4. Реализовать строго в рамках спеки.
 5. Обновить статус спеки на `done` и дату.
-6. Выполнить `pnpm docs` и `pnpm docs:check`.
+6. Выполнить `yarn docs` и `yarn docs:check`.
 7. Закоммитить код, спеку и generated вместе.

@@ -26,7 +26,7 @@ Intake → Spec draft → Approval → Plan → Implementation → Gates → Doc
 Создать спеку:
 
 ```bash
-pnpm spec:new groups "Название задачи" --layer features
+yarn spec:new groups "Название задачи" --layer features
 ```
 
 Заполнить:
@@ -77,15 +77,15 @@ pnpm spec:new groups "Название задачи" --layer features
 
 ```bash
 npx tsc --noEmit
-pnpm lint
-pnpm docs
-pnpm docs:check
+yarn lint
+yarn docs
+yarn docs:check
 ```
 
 Дополнительно:
 
-- `pnpm docs:check -- --strict` — если задача касается архитектуры или слоёв.
-- Ручной прогон сценариев приёмки в `pnpm dev`.
+- `yarn docs:check --strict` — если задача касается архитектуры или слоёв.
+- Ручной прогон сценариев приёмки в `yarn dev`.
 
 Гейт не пройден — задача не готова. Нельзя «закомментировать проверку», чтобы пройти.
 
@@ -94,7 +94,7 @@ pnpm docs:check
 1. Перевести статус спеки в `done`.
 2. Обновить `updated` (дата).
 3. Заполнить `tests`, если тесты появились.
-4. Запустить `pnpm docs` и убедиться, что generated отражает новое состояние.
+4. Запустить `yarn docs` и убедиться, что generated отражает новое состояние.
 5. Проверить [generated/traceability.md](../generated/traceability.md): спека связана с файлами.
 
 Если задача изменила архитектуру — добавить или обновить ADR в `docs/decisions/`.
@@ -143,7 +143,7 @@ pnpm docs:check
 |---|---|
 | Код без спеки | шаг 2 обязателен |
 | Спека «на будущее» без критериев | каждый пункт — проверяемый |
-| Правка generated | только `pnpm docs` |
+| Правка generated | только `yarn docs` |
 | Импорт `features` из `shared` | проверять `architecture-check.md` |
 | Забыли обновить статус | шаг 7 в чек-листе |
 | Тесты «потом» | зафиксировать в `tests` и DoD |
