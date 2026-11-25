@@ -6,6 +6,8 @@ import { useAppDispatch } from "@app/hooks";
 import { login } from "@features/auth";
 import { Input, Button, Card } from "@shared/ui";
 
+// @spec auth-001
+
 const AuthContainer = styled.div`
   display: flex;
   align-items: center;

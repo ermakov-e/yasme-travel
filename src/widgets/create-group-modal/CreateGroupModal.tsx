@@ -15,6 +15,8 @@ import { StepMembers } from "./steps/StepMembers";
 import type { CreateGroupFormData } from "./types";
 import { createGroupSchema } from "./validation";
 
+// @spec groups-002
+
 const TOTAL_STEPS = 3;
 
 const STEP_TITLES = ["Новая группа", "Место встречи", "Участники"];

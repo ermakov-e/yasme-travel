@@ -9,6 +9,8 @@ import { openModal } from "@features/ui/modalSlice";
 import { useGetGroupsQuery } from "@features/groups";
 import { Loading } from "@shared/ui";
 
+// @spec groups-001
+
 const PageContainer = styled.div`
   display: flex;
   flex-direction: column;
