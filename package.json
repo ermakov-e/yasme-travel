@@ -8,7 +8,10 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "docs": "node scripts/docs/generate.mjs",
+    "docs:check": "node scripts/docs/validate.mjs",
+    "spec:new": "node scripts/docs/new-spec.mjs"
   },
   "dependencies": {
     "@emotion/react": "^11.14.0",
