@@ -65,9 +65,9 @@ interface Photo { id: string; groupId: string; url: string; createdAt: string; }
 ## Проверка
 
 - `npx tsc --noEmit`
-- `pnpm lint`
+- `yarn lint`
 - Сценарии 1–5 вручную.
-- `pnpm docs:check`.
+- `yarn docs:check`.
 
 ## Открытые вопросы
 

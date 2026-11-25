@@ -94,7 +94,7 @@ id, title, status, layer, areas, files, planned, tests, created, updated
 - `node scripts/docs/generate.mjs`
 - `node scripts/docs/validate.mjs`
 - `node scripts/docs/new-spec.mjs scratch "Проверка"` (с удалением результата)
-- `pnpm lint`
+- `yarn lint`
 - `npx tsc --noEmit` (код `src` не менялся)
 
 ## Открытые вопросы

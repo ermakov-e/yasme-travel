@@ -18,13 +18,15 @@
 | `platform-001` | `scripts/docs/`<br>`docs/agent/`<br>`docs/specs/`<br>`docs/generated/`<br>`docs/decisions/`<br>`docs/README.md`<br>`docs/architecture.md`<br>`docs/state-management.md`<br>`docs/api.md`<br>`docs/testing.md`<br>`docs/glossary.md`<br>`.env.example`<br>`AGENTS.md`<br>`README.md`<br>`package.json` | — | — |
 | `platform-002` | `src/app/layouts/BottomNavigation/`<br>`src/app/router.tsx` | `src/pages/FriendsPage/`<br>`src/pages/SettingsPage/` | — |
 | `platform-003` | `src/features/ui/ModalProvider.tsx`<br>`src/shared/ui/AutocompleteAddress/`<br>`src/shared/ui/LocationPicker/`<br>`src/shared/ui/modal/`<br>`src/shared/mocks/handlers/groups.ts`<br>`src/features/groups/types.ts`<br>`src/widgets/create-group-modal/types.ts`<br>`src/app/store.ts`<br>`src/features/autocomplete-address/types.ts` | — | — |
+| `platform-004` | `package.json`<br>`yarn.lock`<br>`README.md`<br>`AGENTS.md`<br>`docs/`<br>`scripts/docs/` | — | — |
 
 ## Код → спеки
 
 | Файл или каталог | Спеки |
 | --- | --- |
 | `.env.example` | `platform-001` |
-| `AGENTS.md` | `platform-001` |
+| `AGENTS.md` | `platform-001`, `platform-004` |
+| `docs/` | `platform-004` |
 | `docs/agent/` | `platform-001` |
 | `docs/api.md` | `platform-001` |
 | `docs/architecture.md` | `platform-001` |
@@ -35,9 +37,9 @@
 | `docs/specs/` | `platform-001` |
 | `docs/state-management.md` | `platform-001` |
 | `docs/testing.md` | `platform-001` |
-| `package.json` | `platform-001` |
-| `README.md` | `platform-001` |
-| `scripts/docs/` | `platform-001` |
+| `package.json` | `platform-001`, `platform-004` |
+| `README.md` | `platform-001`, `platform-004` |
+| `scripts/docs/` | `platform-001`, `platform-004` |
 | `src/app/layouts/BottomNavigation/` | `platform-002` |
 | `src/app/providers/` | `auth-001` |
 | `src/app/router.tsx` | `auth-001`, `platform-002` |
@@ -70,4 +72,5 @@
 | `src/widgets/groups-list/` | `groups-001` |
 | `src/widgets/LocationModal/` | `photos-001` |
 | `src/widgets/Map/` | `map-001` |
+| `yarn.lock` | `platform-004` |
 

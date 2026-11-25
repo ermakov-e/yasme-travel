@@ -68,9 +68,9 @@ updated: 2026-11-22
 ## Проверка
 
 - `npx tsc --noEmit`
-- `pnpm lint`
-- Ручные сценарии 1–5 в `pnpm dev`.
-- `pnpm docs:check` — маршруты и store отражены в generated.
+- `yarn lint`
+- Ручные сценарии 1–5 в `yarn dev`.
+- `yarn docs:check` — маршруты и store отражены в generated.
 
 ## Открытые вопросы
 

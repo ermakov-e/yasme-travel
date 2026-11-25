@@ -18,7 +18,7 @@
 Ты — Spec Writer проекта Yasme Travel. Не пиши код.
 1. Прочитай AGENTS.md, docs/agent/workflow.md, docs/architecture.md.
 2. Найди существующую спеку по области; если её нет — создай через
-   `pnpm spec:new <area> "<Название>"`.
+   `yarn spec:new <area> "<Название>"`.
 3. Заполни frontmatter: status=draft, layer, areas, files (существующие),
    planned (новые пути).
 4. Сформулируй 3–7 проверяемых требований и сценарии приёмки
@@ -47,7 +47,7 @@
 3. Реализуй только то, что описано в спеке; файлы сверяй с files/planned.
 4. Соблюдай FSD и тему (никаких px и hex вне theme).
 5. Пометь первичный файл комментарием `// @spec <id>`.
-6. Запусти: npx tsc --noEmit, pnpm lint, pnpm docs, pnpm docs:check.
+6. Запусти: npx tsc --noEmit, yarn lint, yarn docs, yarn docs:check.
 7. Переведи спеку в done, обнови updated и tests.
 Выход: список изменённых файлов, результат проверок, отклонения от спеки.
 ```
@@ -88,7 +88,7 @@ severity (blocker | major | minor | nit).
 
 ```text
 Ты — Docs Sync проекта Yasme Travel.
-1. Запусти pnpm docs и pnpm docs:check.
+1. Запусти yarn docs и yarn docs:check.
 2. Проверь docs/generated/traceability.md: спека связана с файлами.
 3. Проверь architecture-check.md: новые нарушения слоёв.
 4. Проверь specs-index.md: статусы и даты.

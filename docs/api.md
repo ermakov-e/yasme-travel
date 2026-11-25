@@ -75,8 +75,8 @@ interface CreateGroupPayload {
 2. Добавить endpoint в `*apiSlice.ts` фичи с тегами.
 3. Экспортировать хук из `index.ts` фичи.
 4. Добавить MSW-обработчик в `shared/mocks/handlers`.
-5. Обновить спеку и выполнить `pnpm docs`.
-6. Проверить `pnpm docs:check`.
+5. Обновить спеку и выполнить `yarn docs`.
+6. Проверить `yarn docs:check`.
 
 ## Переменные окружения
 

@@ -39,7 +39,7 @@ Yasme Travel — frontend приложение для совместной ра�
 - Если информации недостаточно — задай вопрос
 - Следуй документации в /docs
 - Каждая задача начинается со спеки в `docs/specs` (см. `docs/agent/workflow.md`)
-- `docs/generated` не редактируется вручную — только через `pnpm docs`
+- `docs/generated` не редактируется вручную — только через `yarn docs`
 
 ---
 
@@ -48,12 +48,12 @@ Yasme Travel — frontend приложение для совместной ра�
 Перед реализацией задачи ОБЯЗАТЕЛЬНО:
 
 1. Проанализировать задачу
-2. Найти или создать спеку в `docs/specs` (`pnpm spec:new <area> "Название"`)
+2. Найти или создать спеку в `docs/specs` (`yarn spec:new <area> "Название"`)
 3. Определить слой (FSD) и зафиксировать его в спеке
 4. Согласовать требования и сценарии приёмки (`status: approved`)
 5. Предложить структуру файлов (`files` / `planned` в спеке)
 6. Только после этого писать код
-7. Прогнать гейты: `npx tsc --noEmit`, `pnpm lint`, `pnpm docs`, `pnpm docs:check`
+7. Прогнать гейты: `npx tsc --noEmit`, `yarn lint`, `yarn docs`, `yarn docs:check`
 8. Перевести спеку в `done` и закоммитить вместе с generated
 
 Подробный процесс: `docs/agent/workflow.md`.
@@ -210,31 +210,31 @@ Yasme Travel — frontend приложение для совместной ра�
 ## Dev Commands
 
 Установка зависимостей:
-pnpm install
+yarn install
 
 Запуск проекта (development):
-pnpm run dev
+yarn dev
 
 Сборка:
-pnpm run build
+yarn build
 
 Предварительный просмотр сборки:
-pnpm run preview
+yarn preview
 
 Линтинг:
-pnpm run lint
+yarn lint
 
 Проверка типов (TypeScript):
 tsc --noEmit
 
 Генерация документации:
-pnpm docs
+yarn docs
 
 Проверка документации и архитектуры:
-pnpm docs:check
+yarn docs:check
 
 Новая спека задачи:
-pnpm spec:new <area> "Название"
+yarn spec:new <area> "Название"
 
 ---
 
@@ -291,10 +291,10 @@ pnpm spec:new <area> "Название"
 Правила:
 
 - Нет спеки — нет реализации. Исключение: опечатки и правка документации.
-- Спека создаётся через `pnpm spec:new` и содержит frontmatter: `id`, `title`, `status`, `layer`, `areas`, `files`, `planned`, `tests`, `created`, `updated`.
+- Спека создаётся через `yarn spec:new` и содержит frontmatter: `id`, `title`, `status`, `layer`, `areas`, `files`, `planned`, `tests`, `created`, `updated`.
 - Первичный файл реализации помечается комментарием `// @spec <id>`.
-- `docs/generated` обновляется только командой `pnpm docs`.
-- Перед коммитом обязателен `pnpm docs:check`.
+- `docs/generated` обновляется только командой `yarn docs`.
+- Перед коммитом обязателен `yarn docs:check`.
 - Архитектурное решение фиксируется в ADR, а не только в переписке.
 - Нарушения слоёв и покрытие спеками видны в `docs/generated/architecture-check.md`.
 

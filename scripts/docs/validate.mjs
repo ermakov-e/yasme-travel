@@ -19,11 +19,11 @@ const warnings = [];
 const pages = buildPages();
 for (const [file, page] of Object.entries(pages)) {
   if (!exists(file)) {
-    errors.push(`Нет generated-файла: ${file}. Запустите: pnpm docs`);
+    errors.push(`Нет generated-файла: ${file}. Запустите: yarn docs`);
     continue;
   }
   if (read(file) !== page.content) {
-    errors.push(`Устарел generated-файл: ${file}. Запустите: pnpm docs`);
+    errors.push(`Устарел generated-файл: ${file}. Запустите: yarn docs`);
   }
 }
 

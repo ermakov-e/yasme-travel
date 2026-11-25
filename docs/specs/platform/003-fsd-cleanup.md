@@ -48,11 +48,11 @@ updated: 2026-11-22
 
 ## Сценарии приёмки
 
-1. `pnpm docs:check -- --strict` проходит без предупреждений слоёв.
+1. `yarn docs:check --strict` проходит без предупреждений слоёв.
 2. `docs/generated/architecture-check.md` не содержит строк с `**error**`.
 3. `docs/generated/ui-kit.md` не содержит каталогов без реэкспорта.
 4. Создание группы, автодополнение адреса и выбор точки работают как раньше.
-5. `npx tsc --noEmit` и `pnpm lint` зелёные.
+5. `npx tsc --noEmit` и `yarn lint` зелёные.
 
 ## FSD
 
@@ -83,9 +83,9 @@ updated: 2026-11-22
 ## Проверка
 
 - `npx tsc --noEmit`
-- `pnpm lint`
-- `pnpm docs`
-- `pnpm docs:check -- --strict`
+- `yarn lint`
+- `yarn docs`
+- `yarn docs:check --strict`
 - Ручные сценарии `groups-002`.
 
 ## Открытые вопросы

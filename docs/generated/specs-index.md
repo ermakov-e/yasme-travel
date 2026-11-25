@@ -11,7 +11,7 @@
 | черновик | 6 |
 | согласована | 0 |
 | в работе | 0 |
-| готова | 4 |
+| готова | 5 |
 | устарела | 0 |
 
 ## Спеки
@@ -28,6 +28,7 @@
 | `platform-001` | Контур документации и спек | готова | `shared` | platform, docs | 2026-11-22 | `docs/specs/platform/001-documentation-system.md` |
 | `platform-002` | Навигационный каркас | черновик | `app` | platform, navigation | 2026-11-22 | `docs/specs/platform/002-navigation-shell.md` |
 | `platform-003` | Приведение слоёв FSD в порядок | черновик | `shared` | platform, architecture | 2026-11-22 | `docs/specs/platform/003-fsd-cleanup.md` |
+| `platform-004` | Переход с pnpm на Yarn | готова | `shared` | platform, tooling | 2026-11-25 | `docs/specs/platform/004-yarn-migration.md` |
 
 ## Легенда
 

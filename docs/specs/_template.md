@@ -42,8 +42,8 @@ updated: 2026-01-01
 ## Проверка
 
 - `npx tsc --noEmit`
-- `pnpm lint`
-- `pnpm docs:check`
+- `yarn lint`
+- `yarn docs:check`
 - Ручной сценарий: ...
 
 ## Открытые вопросы
